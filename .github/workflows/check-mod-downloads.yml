@@ -2,7 +2,7 @@ name: Check mod download counts
 
 on:
   schedule:
-    - cron: '30 21 * * *'
+    - cron: '30 21 * * *' # UTC. 06:30 JST.
   workflow_dispatch: {}
 
 permissions:
