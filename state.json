@@ -1,0 +1,8 @@
+{
+  "mc_release": "26.2",
+  "mc_snapshot": "26.3-rc-2",
+  "fabric_has_release": true,
+  "fabric_has_snapshot": true,
+  "forge_has_release": true,
+  "neoforge_has_release": true
+}
