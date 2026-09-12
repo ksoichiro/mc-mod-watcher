@@ -25,12 +25,12 @@ jobs:
 
       - name: Commit updated state
         run: |
-          if git diff --quiet -- mod-downloads-state.json; then
+          git add mod-downloads-state.json
+          if git diff --cached --quiet -- mod-downloads-state.json; then
             echo "No state change to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add mod-downloads-state.json
           git commit -m "chore: update mod downloads watch state"
           git push
