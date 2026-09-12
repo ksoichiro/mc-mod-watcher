@@ -1,4 +1,8 @@
-# mc-version-watcher
+# mc-mod-watcher
+
+Minecraft Java版の新バージョン対応状況と、自作ModのCurseForge/Modrinthダウンロード数を監視し、変化があればDiscordに通知します。
+
+## バージョン監視
 
 Minecraft Java版の新バージョン(release/snapshot)と、Fabric/Forge/NeoForgeの対応状況を1時間おきに監視し、変化があればDiscordに通知します。
 
@@ -17,6 +21,19 @@ Minecraft Java版の新バージョン(release/snapshot)と、Fabric/Forge/NeoFo
 
 GitHub Actions (`.github/workflows/check-versions.yml`) が1時間おきに実行し、`state.json` の変化を自動でコミットします。手動実行は Actions タブから `workflow_dispatch` で行えます。
 
+## Mod ダウンロード数の監視
+
+`scripts/check-mod-downloads.sh` が CurseForge (`downloadCount`) と Modrinth (`downloads`) の各Modの
+ダウンロード数を取得し、`mod-downloads-state.json` に保存された前回値と比較します。増加したModが
+あれば、その差分を `DISCORD_WEBHOOK_URL` 宛てに通知します(減少は無視)。
+
+Mod一覧・Modrinthユーザー名は dotfiles `mod-stats.local.sh` と同じ値をスクリプト内に直書きしています。
+Mod追加時はスクリプト内の `MODRINTH_EXTRA_IDS` / `CURSEFORGE_MOD_IDS` を更新してください。
+
+`state.json` と同様、初回実行時は通知せず現在の状態を記録するだけです。GitHub Actions
+(`.github/workflows/check-mod-downloads.yml`) が1日1回実行します。
+
 ## Secrets
 
 - `DISCORD_WEBHOOK_URL`: 通知先のDiscord Webhook URL
+- `CURSEFORGE_API_KEY`: CurseForge Core API キー([console.curseforge.com](https://console.curseforge.com/)で無料発行)。未設定の場合はCurseForge側の監視のみスキップされる
