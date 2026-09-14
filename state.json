@@ -4,5 +4,5 @@
   "fabric_has_release": true,
   "fabric_has_snapshot": true,
   "forge_has_release": true,
-  "neoforge_has_release": false
+  "neoforge_has_release": true
 }
