@@ -27,6 +27,13 @@ fetch_neoforge_metadata() {
   curl -fsSL "$NEOFORGE_METADATA_URL"
 }
 
+# maven-metadata.xml の <version> 一覧は公開順(昇順)なので、
+# 指定prefixに一致する最後の要素が該当MCバージョン向けの最新ビルド。
+latest_version_for_prefix() {
+  local xml="$1" prefix="$2"
+  echo "$xml" | grep -oE "<version>${prefix}[^<]*</version>" | tail -1 | sed -E 's#</?version>##g'
+}
+
 # Old scheme: MC release "1.21.9" -> NeoForge version prefix "21.9."
 # New scheme (2026-): MC release "26.2" has no "1." prefix, so it passes through unchanged.
 neoforge_prefix_for_mc_version() {
@@ -48,19 +55,21 @@ main() {
   fabric_has_snapshot="$(echo "$fabric_json" | jq --arg v "$mc_snapshot" '[.[] | select(.version == $v)] | length > 0')"
 
   log "Fetching Forge maven-metadata..."
-  local forge_xml forge_has_release
+  local forge_xml forge_has_release forge_latest_version
   forge_xml="$(fetch_forge_metadata)"
-  if echo "$forge_xml" | grep -q "<version>${mc_release}-"; then
+  forge_latest_version="$(latest_version_for_prefix "$forge_xml" "${mc_release}-")"
+  if [[ -n "$forge_latest_version" ]]; then
     forge_has_release="true"
   else
     forge_has_release="false"
   fi
 
   log "Fetching NeoForge maven-metadata..."
-  local neoforge_xml neoforge_prefix neoforge_has_release
+  local neoforge_xml neoforge_prefix neoforge_has_release neoforge_latest_version
   neoforge_xml="$(fetch_neoforge_metadata)"
   neoforge_prefix="$(neoforge_prefix_for_mc_version "$mc_release")"
-  if echo "$neoforge_xml" | grep -q "<version>${neoforge_prefix}"; then
+  neoforge_latest_version="$(latest_version_for_prefix "$neoforge_xml" "$neoforge_prefix")"
+  if [[ -n "$neoforge_latest_version" ]]; then
     neoforge_has_release="true"
   else
     neoforge_has_release="false"
@@ -110,10 +119,10 @@ main() {
       messages+=("🟣 Fabric が **${mc_snapshot}** (snapshot) に対応しました")
     fi
     if [[ "$forge_has_release" == "true" && "$old_forge_release" != "true" ]]; then
-      messages+=("🔶 Forge が **${mc_release}** に対応しました")
+      messages+=("🔶 Forge が **${mc_release}** に対応しました (${forge_latest_version})")
     fi
     if [[ "$neoforge_has_release" == "true" && "$old_neoforge_release" != "true" ]]; then
-      messages+=("🔷 NeoForge が **${mc_release}** に対応しました")
+      messages+=("🔷 NeoForge が **${mc_release}** に対応しました (${neoforge_latest_version})")
     fi
   else
     log "No existing state file found. Seeding initial state without notification."
