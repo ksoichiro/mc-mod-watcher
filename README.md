@@ -35,5 +35,6 @@ Mod追加時はスクリプト内の `MODRINTH_EXTRA_IDS` / `CURSEFORGE_MOD_IDS`
 
 ## Secrets
 
-- `DISCORD_WEBHOOK_URL`: 通知先のDiscord Webhook URL
+- `DISCORD_WEBHOOK_URL_VERSIONS`: バージョン監視の通知先Discord Webhook URL
+- `DISCORD_WEBHOOK_URL_DOWNLOADS`: Modダウンロード数監視の通知先Discord Webhook URL
 - `CURSEFORGE_API_KEY`: CurseForge Core API キー([console.curseforge.com](https://console.curseforge.com/)で無料発行)。未設定の場合はCurseForge側の監視のみスキップされる

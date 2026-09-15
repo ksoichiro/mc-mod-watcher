@@ -17,7 +17,7 @@ jobs:
 
       - name: Run mod downloads check
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_DOWNLOADS }}
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
         run: |
           chmod +x scripts/check-mod-downloads.sh
