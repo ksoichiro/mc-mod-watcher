@@ -29,7 +29,7 @@ fetch_modrinth_downloads() {
     fi
   done
 
-  echo "$projects" | jq 'map({(.title): .downloads}) | add // {}'
+  echo "$projects" | jq 'map({(.title): {downloads: .downloads, url: ("https://modrinth.com/" + .project_type + "/" + .slug)}}) | add // {}'
 }
 
 fetch_curseforge_downloads() {
@@ -37,19 +37,21 @@ fetch_curseforge_downloads() {
   local mod_id data
   for mod_id in "${CURSEFORGE_MOD_IDS[@]}"; do
     data="$(curl -fsSL -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}")"
-    result="$(jq -n --argjson acc "$result" --argjson d "$data" '$acc + {($d.data.name): $d.data.downloadCount}')"
+    result="$(jq -n --argjson acc "$result" --argjson d "$data" '$acc + {($d.data.name): {downloads: $d.data.downloadCount, url: $d.data.links.websiteUrl}}')"
   done
   echo "$result"
 }
 
 # 前回値より増えたModだけ通知行を作る。減少(取り下げ等)は無視する。
+# $old の値は旧スキーマ(数値)/新スキーマ(downloads/urlを持つオブジェクト)のどちらもあり得る。
 diff_downloads() {
   local source_label="$1" old_json="$2" new_json="$3"
   jq -n --argjson old "$old_json" --argjson new "$new_json" --arg label "$source_label" -r '
     $new | to_entries[] |
-    ($old[.key] // null) as $old_count |
-    select($old_count != null and .value > $old_count) |
-    "📈 \($label) **\(.key)**: +\(.value - $old_count) DL (累計 \(.value))"
+    ($old[.key] // null) as $old_raw |
+    (if ($old_raw | type) == "object" then $old_raw.downloads else $old_raw end) as $old_count |
+    select($old_count != null and .value.downloads > $old_count) |
+    "📈 \($label) [\(.key)](\(.value.url)): +\(.value.downloads - $old_count) DL (累計 \(.value.downloads))"
   '
 }
 
