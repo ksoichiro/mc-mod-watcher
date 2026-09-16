@@ -50,7 +50,9 @@ post_discord_chunk() {
   shift
   local content payload
   content="$(printf '%s\n' "$@")"
-  payload="$(jq -n --arg content "$content" '{content: $content}')"
+  # flags: 4 = SUPPRESS_EMBEDS。リンクだらけのメッセージでプレビュー画像が
+  # ずらずら展開されるのを防ぐ。
+  payload="$(jq -n --arg content "$content" '{content: $content, flags: 4}')"
   curl -fsSL -X POST -H "Content-Type: application/json" -d "$payload" "$webhook_url" > /dev/null
 }
 
