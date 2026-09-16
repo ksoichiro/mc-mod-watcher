@@ -24,6 +24,7 @@ jobs:
           scripts/check-mod-downloads.sh
 
       - name: Commit updated state
+        if: always()
         run: |
           git add mod-downloads-state.json
           if git diff --cached --quiet -- mod-downloads-state.json; then

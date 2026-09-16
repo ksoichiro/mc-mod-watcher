@@ -16,6 +16,44 @@ CURSEFORGE_MOD_IDS=(1414198 1449883 1485856 1459678 1457302 1474573 1462226 6778
 
 log() { echo "[check-mod-downloads] $*" >&2; }
 
+# Discordの1メッセージあたりの上限(2000文字)を超えないよう、
+# 通知行を複数チャンクに分けて送信する。1900文字を安全マージンとする。
+DISCORD_CONTENT_LIMIT=1900
+
+send_discord_notification() {
+  local webhook_url="$1"
+  shift
+  local -a lines=("$@")
+  local -a chunk=()
+  local chunk_len=0
+
+  local line line_len
+
+  for line in "${lines[@]}"; do
+    line_len=${#line}
+    if [[ "$chunk_len" -gt 0 && $((chunk_len + line_len + 1)) -gt "$DISCORD_CONTENT_LIMIT" ]]; then
+      post_discord_chunk "$webhook_url" "${chunk[@]}"
+      chunk=()
+      chunk_len=0
+    fi
+    chunk+=("$line")
+    chunk_len=$((chunk_len + line_len + 1))
+  done
+
+  if [[ "${#chunk[@]}" -gt 0 ]]; then
+    post_discord_chunk "$webhook_url" "${chunk[@]}"
+  fi
+}
+
+post_discord_chunk() {
+  local webhook_url="$1"
+  shift
+  local content payload
+  content="$(printf '%s\n' "$@")"
+  payload="$(jq -n --arg content "$content" '{content: $content}')"
+  curl -fsSL -X POST -H "Content-Type: application/json" -d "$payload" "$webhook_url" > /dev/null
+}
+
 fetch_modrinth_downloads() {
   local projects
   projects="$(curl -fsSL "$MODRINTH_API/user/${MODRINTH_USER}/projects")"
@@ -106,13 +144,7 @@ main() {
     exit 0
   fi
 
-  local content
-  content="$(printf '%s\n' "${messages[@]}")"
-
-  local payload
-  payload="$(jq -n --arg content "$content" '{content: $content}')"
-
-  curl -fsSL -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL" > /dev/null
+  send_discord_notification "$DISCORD_WEBHOOK_URL" "${messages[@]}"
   log "Notification sent."
 }
 
