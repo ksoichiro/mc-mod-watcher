@@ -29,9 +29,11 @@ fetch_neoforge_metadata() {
 
 # maven-metadata.xml の <version> 一覧は公開順(昇順)なので、
 # 指定prefixに一致する最後の要素が該当MCバージョン向けの最新ビルド。
+# 該当バージョンがまだ存在しない(grepが0件)のは正常系なので、
+# pipefail によってスクリプト全体が落ちないよう `|| true` で吸収する。
 latest_version_for_prefix() {
   local xml="$1" prefix="$2"
-  echo "$xml" | grep -oE "<version>${prefix}[^<]*</version>" | tail -1 | sed -E 's#</?version>##g'
+  echo "$xml" | { grep -oE "<version>${prefix}[^<]*</version>" || true; } | tail -1 | sed -E 's#</?version>##g'
 }
 
 # Old scheme: MC release "1.21.9" -> NeoForge version prefix "21.9."
