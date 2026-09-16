@@ -1,94 +1,94 @@
 {
   "curseforge": {
     "Chrono Dawn": {
-      "downloads": 145002,
+      "downloads": 156019,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     },
     "Beginner's Delight": {
-      "downloads": 209029,
+      "downloads": 210059,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Just Block Shapes": {
-      "downloads": 6416,
+      "downloads": 6437,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Just Coordinates": {
-      "downloads": 66662,
+      "downloads": 67389,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Miner's Market": {
-      "downloads": 1318,
+      "downloads": 1323,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Castle Shift": {
-      "downloads": 21787,
+      "downloads": 25902,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Color Challenge": {
-      "downloads": 528,
+      "downloads": 530,
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Fancy Ice Cream": {
-      "downloads": 25870,
+      "downloads": 25899,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Farmer's Miracle": {
-      "downloads": 2137,
+      "downloads": 2144,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
-      "downloads": 1317,
+      "downloads": 1321,
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Weathered Wells": {
-      "downloads": 3005,
+      "downloads": 3025,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     }
   },
   "modrinth": {
-    "Farmer's Miracle": {
-      "downloads": 1495,
-      "url": "https://modrinth.com/mod/farmers-miracle"
-    },
     "Beginner's Delight": {
-      "downloads": 11829,
+      "downloads": 11933,
       "url": "https://modrinth.com/mod/beginners-delight"
     },
-    "Weathered Wells": {
-      "downloads": 1208,
-      "url": "https://modrinth.com/mod/weathered-wells"
-    },
-    "Color Challenge": {
-      "downloads": 441,
-      "url": "https://modrinth.com/mod/color-challenge"
-    },
-    "Hunter's Market": {
-      "downloads": 743,
-      "url": "https://modrinth.com/mod/hunters-market"
-    },
-    "Just Coordinates": {
-      "downloads": 34797,
-      "url": "https://modrinth.com/mod/just-coordinates"
-    },
     "Chrono Dawn": {
-      "downloads": 9210,
+      "downloads": 9293,
       "url": "https://modrinth.com/mod/chrono-dawn"
     },
-    "FancyIceCream": {
-      "downloads": 1932,
-      "url": "https://modrinth.com/mod/fancyicecream"
+    "Just Coordinates": {
+      "downloads": 35178,
+      "url": "https://modrinth.com/mod/just-coordinates"
     },
-    "Castle Shift": {
-      "downloads": 7551,
-      "url": "https://modrinth.com/mod/castle-shift"
-    },
-    "Just Block Shapes": {
-      "downloads": 2993,
-      "url": "https://modrinth.com/mod/just-block-shapes"
+    "Color Challenge": {
+      "downloads": 447,
+      "url": "https://modrinth.com/mod/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 856,
+      "downloads": 862,
       "url": "https://modrinth.com/mod/miners-market"
+    },
+    "Castle Shift": {
+      "downloads": 7592,
+      "url": "https://modrinth.com/mod/castle-shift"
+    },
+    "Weathered Wells": {
+      "downloads": 1213,
+      "url": "https://modrinth.com/mod/weathered-wells"
+    },
+    "FancyIceCream": {
+      "downloads": 1959,
+      "url": "https://modrinth.com/mod/fancyicecream"
+    },
+    "Farmer's Miracle": {
+      "downloads": 1500,
+      "url": "https://modrinth.com/mod/farmers-miracle"
+    },
+    "Just Block Shapes": {
+      "downloads": 3004,
+      "url": "https://modrinth.com/mod/just-block-shapes"
+    },
+    "Hunter's Market": {
+      "downloads": 744,
+      "url": "https://modrinth.com/mod/hunters-market"
     }
   }
 }
