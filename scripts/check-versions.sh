@@ -57,25 +57,15 @@ main() {
   fabric_has_snapshot="$(echo "$fabric_json" | jq --arg v "$mc_snapshot" '[.[] | select(.version == $v)] | length > 0')"
 
   log "Fetching Forge maven-metadata..."
-  local forge_xml forge_has_release forge_latest_version
+  local forge_xml forge_latest_version
   forge_xml="$(fetch_forge_metadata)"
   forge_latest_version="$(latest_version_for_prefix "$forge_xml" "${mc_release}-")"
-  if [[ -n "$forge_latest_version" ]]; then
-    forge_has_release="true"
-  else
-    forge_has_release="false"
-  fi
 
   log "Fetching NeoForge maven-metadata..."
-  local neoforge_xml neoforge_prefix neoforge_has_release neoforge_latest_version
+  local neoforge_xml neoforge_prefix neoforge_latest_version
   neoforge_xml="$(fetch_neoforge_metadata)"
   neoforge_prefix="$(neoforge_prefix_for_mc_version "$mc_release")"
   neoforge_latest_version="$(latest_version_for_prefix "$neoforge_xml" "$neoforge_prefix")"
-  if [[ -n "$neoforge_latest_version" ]]; then
-    neoforge_has_release="true"
-  else
-    neoforge_has_release="false"
-  fi
 
   local new_state
   new_state="$(jq -n \
@@ -83,15 +73,15 @@ main() {
     --arg mc_snapshot "$mc_snapshot" \
     --argjson fabric_has_release "$fabric_has_release" \
     --argjson fabric_has_snapshot "$fabric_has_snapshot" \
-    --argjson forge_has_release "$forge_has_release" \
-    --argjson neoforge_has_release "$neoforge_has_release" \
+    --arg forge_latest_version "$forge_latest_version" \
+    --arg neoforge_latest_version "$neoforge_latest_version" \
     '{
       mc_release: $mc_release,
       mc_snapshot: $mc_snapshot,
       fabric_has_release: $fabric_has_release,
       fabric_has_snapshot: $fabric_has_snapshot,
-      forge_has_release: $forge_has_release,
-      neoforge_has_release: $neoforge_has_release
+      forge_latest_version: $forge_latest_version,
+      neoforge_latest_version: $neoforge_latest_version
     }')"
 
   local messages=()
@@ -100,13 +90,13 @@ main() {
     local old_state
     old_state="$(cat "$STATE_FILE")"
 
-    local old_mc_release old_mc_snapshot old_fabric_release old_fabric_snapshot old_forge_release old_neoforge_release
+    local old_mc_release old_mc_snapshot old_fabric_release old_fabric_snapshot old_forge_version old_neoforge_version
     old_mc_release="$(echo "$old_state" | jq -r '.mc_release')"
     old_mc_snapshot="$(echo "$old_state" | jq -r '.mc_snapshot')"
     old_fabric_release="$(echo "$old_state" | jq -r '.fabric_has_release')"
     old_fabric_snapshot="$(echo "$old_state" | jq -r '.fabric_has_snapshot')"
-    old_forge_release="$(echo "$old_state" | jq -r '.forge_has_release')"
-    old_neoforge_release="$(echo "$old_state" | jq -r '.neoforge_has_release')"
+    old_forge_version="$(echo "$old_state" | jq -r '.forge_latest_version // empty')"
+    old_neoforge_version="$(echo "$old_state" | jq -r '.neoforge_latest_version // empty')"
 
     if [[ "$mc_release" != "$old_mc_release" ]]; then
       messages+=("🟢 Minecraft **${mc_release}** (release) がリリースされました")
@@ -120,11 +110,11 @@ main() {
     if [[ "$fabric_has_snapshot" == "true" && "$old_fabric_snapshot" != "true" ]]; then
       messages+=("🟣 Fabric が **${mc_snapshot}** (snapshot) に対応しました")
     fi
-    if [[ "$forge_has_release" == "true" && "$old_forge_release" != "true" ]]; then
-      messages+=("🔶 Forge が **${mc_release}** に対応しました (${forge_latest_version})")
+    if [[ -n "$forge_latest_version" && "$forge_latest_version" != "$old_forge_version" ]]; then
+      messages+=("🔶 Forge **${mc_release}** 用ビルド ${forge_latest_version} が公開されました")
     fi
-    if [[ "$neoforge_has_release" == "true" && "$old_neoforge_release" != "true" ]]; then
-      messages+=("🔷 NeoForge が **${mc_release}** に対応しました (${neoforge_latest_version})")
+    if [[ -n "$neoforge_latest_version" && "$neoforge_latest_version" != "$old_neoforge_version" ]]; then
+      messages+=("🔷 NeoForge **${mc_release}** 用ビルド ${neoforge_latest_version} が公開されました")
     fi
   else
     log "No existing state file found. Seeding initial state without notification."
