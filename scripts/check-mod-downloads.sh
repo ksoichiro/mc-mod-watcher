@@ -16,6 +16,10 @@ CURSEFORGE_MOD_IDS=(1414198 1449883 1485856 1459678 1457302 1474573 1462226 6778
 
 log() { echo "[check-mod-downloads] $*" >&2; }
 
+# --retry-all-errors: 上流APIが一時的に404/5xxを返すことがあるため、
+# HTTPエラーもリトライ対象に含める。
+CURL_RETRY_OPTS=(--retry 3 --retry-delay 2 --retry-all-errors)
+
 # Discordの1メッセージあたりの上限(2000文字)を超えないよう、
 # 通知行を複数チャンクに分けて送信する。1900文字を安全マージンとする。
 DISCORD_CONTENT_LIMIT=1900
@@ -53,18 +57,18 @@ post_discord_chunk() {
   # flags: 4 = SUPPRESS_EMBEDS。リンクだらけのメッセージでプレビュー画像が
   # ずらずら展開されるのを防ぐ。
   payload="$(jq -n --arg content "$content" '{content: $content, flags: 4}')"
-  curl -fsSL -X POST -H "Content-Type: application/json" -d "$payload" "$webhook_url" > /dev/null
+  curl -fsSL "${CURL_RETRY_OPTS[@]}" -X POST -H "Content-Type: application/json" -d "$payload" "$webhook_url" > /dev/null
 }
 
 fetch_modrinth_downloads() {
   local projects
-  projects="$(curl -fsSL "$MODRINTH_API/user/${MODRINTH_USER}/projects")"
+  projects="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" "$MODRINTH_API/user/${MODRINTH_USER}/projects")"
 
   local id
   for id in "${MODRINTH_EXTRA_IDS[@]}"; do
     if ! echo "$projects" | jq -e --arg id "$id" 'any(.[]; .id == $id)' > /dev/null; then
       local extra
-      extra="$(curl -fsSL "$MODRINTH_API/project/${id}")"
+      extra="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" "$MODRINTH_API/project/${id}")"
       projects="$(jq -n --argjson a "$projects" --argjson b "$extra" '$a + [$b]')"
     fi
   done
@@ -76,7 +80,7 @@ fetch_curseforge_downloads() {
   local result="{}"
   local mod_id data
   for mod_id in "${CURSEFORGE_MOD_IDS[@]}"; do
-    data="$(curl -fsSL -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}")"
+    data="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}")"
     result="$(jq -n --argjson acc "$result" --argjson d "$data" '$acc + {($d.data.name): {downloads: $d.data.downloadCount, url: $d.data.links.websiteUrl}}')"
   done
   echo "$result"

@@ -11,20 +11,24 @@ NEOFORGE_METADATA_URL="https://maven.neoforged.net/releases/net/neoforged/neofor
 
 log() { echo "[check-versions] $*" >&2; }
 
+# --retry-all-errors: 上流CDNが一時的に404/5xxを返すことがあるため、
+# HTTPエラーもリトライ対象に含める。
+CURL_RETRY_OPTS=(--retry 3 --retry-delay 2 --retry-all-errors)
+
 fetch_mc_versions() {
-  curl -fsSL "$MOJANG_MANIFEST_URL"
+  curl -fsSL "${CURL_RETRY_OPTS[@]}" "$MOJANG_MANIFEST_URL"
 }
 
 fetch_fabric_versions() {
-  curl -fsSL "$FABRIC_INTERMEDIARY_URL"
+  curl -fsSL "${CURL_RETRY_OPTS[@]}" "$FABRIC_INTERMEDIARY_URL"
 }
 
 fetch_forge_metadata() {
-  curl -fsSL "$FORGE_METADATA_URL"
+  curl -fsSL "${CURL_RETRY_OPTS[@]}" "$FORGE_METADATA_URL"
 }
 
 fetch_neoforge_metadata() {
-  curl -fsSL "$NEOFORGE_METADATA_URL"
+  curl -fsSL "${CURL_RETRY_OPTS[@]}" "$NEOFORGE_METADATA_URL"
 }
 
 # maven-metadata.xml の <version> 一覧は公開順(昇順)なので、
@@ -141,7 +145,7 @@ main() {
   local payload
   payload="$(jq -n --arg content "$content" '{content: $content}')"
 
-  curl -fsSL -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL" > /dev/null
+  curl -fsSL "${CURL_RETRY_OPTS[@]}" -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL" > /dev/null
   log "Notification sent."
 }
 
