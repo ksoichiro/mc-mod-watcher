@@ -1,94 +1,94 @@
 {
   "curseforge": {
     "Chrono Dawn": {
-      "downloads": 251371,
+      "downloads": 254355,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     },
     "Beginner's Delight": {
-      "downloads": 216092,
+      "downloads": 216340,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Just Block Shapes": {
-      "downloads": 6848,
+      "downloads": 6861,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Just Coordinates": {
-      "downloads": 76385,
+      "downloads": 76969,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Miner's Market": {
-      "downloads": 1445,
+      "downloads": 1449,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Castle Shift": {
-      "downloads": 51328,
+      "downloads": 51633,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Color Challenge": {
-      "downloads": 545,
+      "downloads": 547,
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Fancy Ice Cream": {
-      "downloads": 26317,
+      "downloads": 26339,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Farmer's Miracle": {
-      "downloads": 2280,
+      "downloads": 2282,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
-      "downloads": 1337,
+      "downloads": 1338,
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Weathered Wells": {
-      "downloads": 3197,
+      "downloads": 3202,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     }
   },
   "modrinth": {
-    "Miner's Market": {
-      "downloads": 944,
-      "url": "https://modrinth.com/mod/miners-market"
-    },
-    "Castle Shift": {
-      "downloads": 8570,
-      "url": "https://modrinth.com/mod/castle-shift"
-    },
     "Hunter's Market": {
-      "downloads": 792,
+      "downloads": 796,
       "url": "https://modrinth.com/mod/hunters-market"
     },
-    "FancyIceCream": {
-      "downloads": 2161,
-      "url": "https://modrinth.com/mod/fancyicecream"
-    },
-    "Just Block Shapes": {
-      "downloads": 3215,
-      "url": "https://modrinth.com/mod/just-block-shapes"
-    },
-    "Beginner's Delight": {
-      "downloads": 13691,
-      "url": "https://modrinth.com/mod/beginners-delight"
-    },
     "Just Coordinates": {
-      "downloads": 41741,
+      "downloads": 42122,
       "url": "https://modrinth.com/mod/just-coordinates"
+    },
+    "Weathered Wells": {
+      "downloads": 1357,
+      "url": "https://modrinth.com/mod/weathered-wells"
+    },
+    "Chrono Dawn": {
+      "downloads": 10882,
+      "url": "https://modrinth.com/mod/chrono-dawn"
+    },
+    "Farmer's Miracle": {
+      "downloads": 1566,
+      "url": "https://modrinth.com/mod/farmers-miracle"
+    },
+    "FancyIceCream": {
+      "downloads": 2172,
+      "url": "https://modrinth.com/mod/fancyicecream"
     },
     "Color Challenge": {
       "downloads": 499,
       "url": "https://modrinth.com/mod/color-challenge"
     },
-    "Weathered Wells": {
-      "downloads": 1346,
-      "url": "https://modrinth.com/mod/weathered-wells"
+    "Castle Shift": {
+      "downloads": 8617,
+      "url": "https://modrinth.com/mod/castle-shift"
     },
-    "Chrono Dawn": {
-      "downloads": 10742,
-      "url": "https://modrinth.com/mod/chrono-dawn"
+    "Miner's Market": {
+      "downloads": 954,
+      "url": "https://modrinth.com/mod/miners-market"
     },
-    "Farmer's Miracle": {
-      "downloads": 1564,
-      "url": "https://modrinth.com/mod/farmers-miracle"
+    "Beginner's Delight": {
+      "downloads": 13785,
+      "url": "https://modrinth.com/mod/beginners-delight"
+    },
+    "Just Block Shapes": {
+      "downloads": 3229,
+      "url": "https://modrinth.com/mod/just-block-shapes"
     }
   }
 }
