@@ -11,7 +11,9 @@ CURSEFORGE_API="https://api.curseforge.com/v1"
 MODRINTH_USER="ksoichiro"
 # ユーザーのプロジェクト一覧に出ない(組織所有扱いの)プロジェクト。
 MODRINTH_EXTRA_IDS=("yggUWseW")
-# dotfiles mod-stats.local.sh の11本(2026-08-24確定) + Just Brightness(1702768)。
+# CurseForgeは作者IDで検索して自分のModを自動で拾う。Mod追加時の更新漏れを防ぐため。
+CURSEFORGE_AUTHOR_ID="103748140"
+# 作者検索に出ない場合の保険として、既知のModは個別にも取得する。
 CURSEFORGE_MOD_IDS=(1414198 1449883 1485856 1459678 1457302 1474573 1462226 677895 1452132 1459633 1456423 1702768)
 
 log() { echo "[check-mod-downloads] $*" >&2; }
@@ -77,16 +79,31 @@ fetch_modrinth_downloads() {
 }
 
 fetch_curseforge_downloads() {
-  local result="{}"
+  local mods="[]"
+  local index=0 page_size=50 page total
+  while :; do
+    page="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" \
+      "$CURSEFORGE_API/mods/search?gameId=432&authorId=${CURSEFORGE_AUTHOR_ID}&pageSize=${page_size}&index=${index}")"
+    mods="$(jq -n --argjson a "$mods" --argjson p "$page" '$a + $p.data')"
+    total="$(echo "$page" | jq '.pagination.totalCount')"
+    index=$((index + page_size))
+    [[ "$index" -lt "$total" ]] || break
+  done
+
   local mod_id data
   for mod_id in "${CURSEFORGE_MOD_IDS[@]}"; do
-    data="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}")"
-    result="$(jq -n --argjson acc "$result" --argjson d "$data" '$acc + {($d.data.name): {downloads: $d.data.downloadCount, url: $d.data.links.websiteUrl}}')"
+    if ! echo "$mods" | jq -e --argjson id "$mod_id" 'any(.[]; .id == $id)' > /dev/null; then
+      data="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}")"
+      mods="$(jq -n --argjson a "$mods" --argjson d "$data" '$a + [$d.data]')"
+    fi
   done
-  echo "$result"
+
+  echo "$mods" | jq 'map({(.name): {downloads: .downloadCount, url: .links.websiteUrl}}) | add // {}'
 }
 
 # 前回値より増えたModだけ通知行を作る。減少(取り下げ等)は無視する。
+# 前回stateに無いModは新規検知として通知する。ただし前回そのソース自体が空
+# (初回やAPIキー未設定でスキップした回)の場合は全Modが新規扱いになるので通知しない。
 # $old の値は旧スキーマ(数値)/新スキーマ(downloads/urlを持つオブジェクト)のどちらもあり得る。
 diff_downloads() {
   local source_label="$1" old_json="$2" new_json="$3"
@@ -94,8 +111,13 @@ diff_downloads() {
     $new | to_entries[] |
     ($old[.key] // null) as $old_raw |
     (if ($old_raw | type) == "object" then $old_raw.downloads else $old_raw end) as $old_count |
-    select($old_count != null and .value.downloads > $old_count) |
-    "📈 \($label) [\(.key)](\(.value.url)): +\(.value.downloads - $old_count) DL (累計 \(.value.downloads))"
+    if $old_count == null then
+      select($old | length > 0) |
+      "🆕 \($label) [\(.key)](\(.value.url)): 新規検知 (累計 \(.value.downloads) DL)"
+    else
+      select(.value.downloads > $old_count) |
+      "📈 \($label) [\(.key)](\(.value.url)): +\(.value.downloads - $old_count) DL (累計 \(.value.downloads))"
+    end
   '
 }
 

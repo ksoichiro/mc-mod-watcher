@@ -25,10 +25,12 @@ GitHub Actions (`.github/workflows/check-versions.yml`) が1時間おきに実�
 
 `scripts/check-mod-downloads.sh` が CurseForge (`downloadCount`) と Modrinth (`downloads`) の各Modの
 ダウンロード数を取得し、`mod-downloads-state.json` に保存された前回値と比較します。増加したModが
-あれば、その差分を `DISCORD_WEBHOOK_URL` 宛てに通知します(減少は無視)。
+あれば、その差分を `DISCORD_WEBHOOK_URL` 宛てに通知します(減少は無視)。前回の状態に無いModが
+見つかった場合は新規検知として通知します。
 
-Mod一覧・Modrinthユーザー名は dotfiles `mod-stats.local.sh` と同じ値をスクリプト内に直書きしています。
-Mod追加時はスクリプト内の `MODRINTH_EXTRA_IDS` / `CURSEFORGE_MOD_IDS` を更新してください。
+監視対象のModは、Modrinthはユーザー名(`MODRINTH_USER`)、CurseForgeは作者ID(`CURSEFORGE_AUTHOR_ID`)
+から自動で取得するため、Modを追加してもスクリプトの更新は不要です。ユーザー/作者の一覧に出ないModだけ
+`MODRINTH_EXTRA_IDS` / `CURSEFORGE_MOD_IDS` に追加してください。
 
 `state.json` と同様、初回実行時は通知せず現在の状態を記録するだけです。GitHub Actions
 (`.github/workflows/check-mod-downloads.yml`) が1日1回実行します。
