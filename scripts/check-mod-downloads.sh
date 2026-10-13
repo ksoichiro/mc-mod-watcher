@@ -11,8 +11,8 @@ CURSEFORGE_API="https://api.curseforge.com/v1"
 MODRINTH_USER="ksoichiro"
 # ユーザーのプロジェクト一覧に出ない(組織所有扱いの)プロジェクト。
 MODRINTH_EXTRA_IDS=("yggUWseW")
-# dotfiles mod-stats.local.sh と同じ11本(2026-08-24確定)。
-CURSEFORGE_MOD_IDS=(1414198 1449883 1485856 1459678 1457302 1474573 1462226 677895 1452132 1459633 1456423)
+# dotfiles mod-stats.local.sh の11本(2026-08-24確定) + Just Brightness(1702768)。
+CURSEFORGE_MOD_IDS=(1414198 1449883 1485856 1459678 1457302 1474573 1462226 677895 1452132 1459633 1456423 1702768)
 
 log() { echo "[check-mod-downloads] $*" >&2; }
 
