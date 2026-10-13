@@ -78,14 +78,20 @@ fetch_modrinth_downloads() {
   echo "$projects" | jq 'map({(.title): {downloads: .downloads, url: ("https://modrinth.com/" + .project_type + "/" + .slug)}}) | add // {}'
 }
 
+# CurseForgeのModオブジェクトはスクリーンショットやファイル一覧を含み巨大で、
+# 検索結果をそのまま --argjson に渡すと引数長上限(Linuxで1引数128KB)を超える。
+# レスポンスはstdinでjqに渡し、必要なフィールドだけに絞ってから保持する。
+CURSEFORGE_SLIM_MOD='{id, name, downloads: .downloadCount, url: .links.websiteUrl}'
+
 fetch_curseforge_downloads() {
   local mods="[]"
   local index=0 page_size=50 page total
   while :; do
     page="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" \
-      "$CURSEFORGE_API/mods/search?gameId=432&authorId=${CURSEFORGE_AUTHOR_ID}&pageSize=${page_size}&index=${index}")"
-    mods="$(jq -n --argjson a "$mods" --argjson p "$page" '$a + $p.data')"
-    total="$(echo "$page" | jq '.pagination.totalCount')"
+      "$CURSEFORGE_API/mods/search?gameId=432&authorId=${CURSEFORGE_AUTHOR_ID}&pageSize=${page_size}&index=${index}" |
+      jq "{total: .pagination.totalCount, mods: [.data[] | $CURSEFORGE_SLIM_MOD]}")"
+    mods="$(jq -n --argjson a "$mods" --argjson p "$page" '$a + $p.mods')"
+    total="$(echo "$page" | jq '.total')"
     index=$((index + page_size))
     [[ "$index" -lt "$total" ]] || break
   done
@@ -93,12 +99,13 @@ fetch_curseforge_downloads() {
   local mod_id data
   for mod_id in "${CURSEFORGE_MOD_IDS[@]}"; do
     if ! echo "$mods" | jq -e --argjson id "$mod_id" 'any(.[]; .id == $id)' > /dev/null; then
-      data="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}")"
-      mods="$(jq -n --argjson a "$mods" --argjson d "$data" '$a + [$d.data]')"
+      data="$(curl -fsSL "${CURL_RETRY_OPTS[@]}" -H "x-api-key: $CURSEFORGE_API_KEY" "$CURSEFORGE_API/mods/${mod_id}" |
+        jq ".data | $CURSEFORGE_SLIM_MOD")"
+      mods="$(jq -n --argjson a "$mods" --argjson d "$data" '$a + [$d]')"
     fi
   done
 
-  echo "$mods" | jq 'map({(.name): {downloads: .downloadCount, url: .links.websiteUrl}}) | add // {}'
+  echo "$mods" | jq 'map({(.name): {downloads, url}}) | add // {}'
 }
 
 # 前回値より増えたModだけ通知行を作る。減少(取り下げ等)は無視する。
