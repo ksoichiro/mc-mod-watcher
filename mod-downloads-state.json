@@ -1,7 +1,7 @@
 {
   "curseforge": {
     "Just Brightness": {
-      "downloads": 1450,
+      "downloads": 1521,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-brightness"
     },
     "Color Challenge": {
@@ -9,90 +9,90 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 1527,
+      "downloads": 1528,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Weathered Wells": {
-      "downloads": 3273,
+      "downloads": 3280,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     },
     "Farmer's Miracle": {
-      "downloads": 2385,
+      "downloads": 2397,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
-      "downloads": 1353,
+      "downloads": 1354,
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Fancy Ice Cream": {
-      "downloads": 26981,
+      "downloads": 27126,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Just Block Shapes": {
-      "downloads": 7236,
+      "downloads": 7255,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Castle Shift": {
-      "downloads": 57353,
+      "downloads": 57728,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Just Coordinates": {
-      "downloads": 82397,
+      "downloads": 82737,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Beginner's Delight": {
-      "downloads": 220220,
+      "downloads": 220455,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Chrono Dawn": {
-      "downloads": 313821,
+      "downloads": 317615,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     }
   },
   "modrinth": {
-    "Chrono Dawn": {
-      "downloads": 15141,
-      "url": "https://modrinth.com/mod/chrono-dawn"
+    "Just Block Shapes": {
+      "downloads": 3524,
+      "url": "https://modrinth.com/mod/just-block-shapes"
     },
-    "Color Challenge": {
-      "downloads": 643,
-      "url": "https://modrinth.com/mod/color-challenge"
-    },
-    "Miner's Market": {
-      "downloads": 1044,
-      "url": "https://modrinth.com/mod/miners-market"
-    },
-    "Farmer's Miracle": {
-      "downloads": 1641,
-      "url": "https://modrinth.com/mod/farmers-miracle"
+    "FancyIceCream": {
+      "downloads": 2743,
+      "url": "https://modrinth.com/mod/fancyicecream"
     },
     "Hunter's Market": {
       "downloads": 846,
       "url": "https://modrinth.com/mod/hunters-market"
     },
-    "Just Block Shapes": {
-      "downloads": 3514,
-      "url": "https://modrinth.com/mod/just-block-shapes"
-    },
-    "Just Coordinates": {
-      "downloads": 51518,
-      "url": "https://modrinth.com/mod/just-coordinates"
+    "Chrono Dawn": {
+      "downloads": 15384,
+      "url": "https://modrinth.com/mod/chrono-dawn"
     },
     "Beginner's Delight": {
-      "downloads": 15490,
+      "downloads": 15610,
       "url": "https://modrinth.com/mod/beginners-delight"
     },
-    "FancyIceCream": {
-      "downloads": 2517,
-      "url": "https://modrinth.com/mod/fancyicecream"
+    "Miner's Market": {
+      "downloads": 1044,
+      "url": "https://modrinth.com/mod/miners-market"
+    },
+    "Just Coordinates": {
+      "downloads": 52281,
+      "url": "https://modrinth.com/mod/just-coordinates"
+    },
+    "Farmer's Miracle": {
+      "downloads": 1647,
+      "url": "https://modrinth.com/mod/farmers-miracle"
     },
     "Castle Shift": {
-      "downloads": 10087,
+      "downloads": 10243,
       "url": "https://modrinth.com/mod/castle-shift"
     },
     "Weathered Wells": {
-      "downloads": 1450,
+      "downloads": 1456,
       "url": "https://modrinth.com/mod/weathered-wells"
+    },
+    "Color Challenge": {
+      "downloads": 643,
+      "url": "https://modrinth.com/mod/color-challenge"
     }
   }
 }
