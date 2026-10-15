@@ -1,7 +1,7 @@
 {
   "curseforge": {
     "Just Brightness": {
-      "downloads": 1521,
+      "downloads": 1584,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-brightness"
     },
     "Color Challenge": {
@@ -13,11 +13,11 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Weathered Wells": {
-      "downloads": 3280,
+      "downloads": 3282,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     },
     "Farmer's Miracle": {
-      "downloads": 2397,
+      "downloads": 2406,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
@@ -25,74 +25,74 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Fancy Ice Cream": {
-      "downloads": 27126,
+      "downloads": 27162,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Just Block Shapes": {
-      "downloads": 7255,
+      "downloads": 7266,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Castle Shift": {
-      "downloads": 57728,
+      "downloads": 58109,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Just Coordinates": {
-      "downloads": 82737,
+      "downloads": 83075,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Beginner's Delight": {
-      "downloads": 220455,
+      "downloads": 220687,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Chrono Dawn": {
-      "downloads": 317615,
+      "downloads": 321387,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     }
   },
   "modrinth": {
-    "Just Block Shapes": {
-      "downloads": 3524,
-      "url": "https://modrinth.com/mod/just-block-shapes"
-    },
-    "FancyIceCream": {
-      "downloads": 2743,
-      "url": "https://modrinth.com/mod/fancyicecream"
-    },
-    "Hunter's Market": {
-      "downloads": 846,
-      "url": "https://modrinth.com/mod/hunters-market"
-    },
-    "Chrono Dawn": {
-      "downloads": 15384,
-      "url": "https://modrinth.com/mod/chrono-dawn"
-    },
-    "Beginner's Delight": {
-      "downloads": 15610,
-      "url": "https://modrinth.com/mod/beginners-delight"
-    },
-    "Miner's Market": {
-      "downloads": 1044,
-      "url": "https://modrinth.com/mod/miners-market"
-    },
-    "Just Coordinates": {
-      "downloads": 52281,
-      "url": "https://modrinth.com/mod/just-coordinates"
-    },
-    "Farmer's Miracle": {
-      "downloads": 1647,
-      "url": "https://modrinth.com/mod/farmers-miracle"
-    },
-    "Castle Shift": {
-      "downloads": 10243,
-      "url": "https://modrinth.com/mod/castle-shift"
-    },
     "Weathered Wells": {
       "downloads": 1456,
       "url": "https://modrinth.com/mod/weathered-wells"
     },
+    "Castle Shift": {
+      "downloads": 10425,
+      "url": "https://modrinth.com/mod/castle-shift"
+    },
+    "Hunter's Market": {
+      "downloads": 848,
+      "url": "https://modrinth.com/mod/hunters-market"
+    },
+    "Just Coordinates": {
+      "downloads": 52983,
+      "url": "https://modrinth.com/mod/just-coordinates"
+    },
+    "Beginner's Delight": {
+      "downloads": 16232,
+      "url": "https://modrinth.com/mod/beginners-delight"
+    },
     "Color Challenge": {
       "downloads": 643,
       "url": "https://modrinth.com/mod/color-challenge"
+    },
+    "Chrono Dawn": {
+      "downloads": 15556,
+      "url": "https://modrinth.com/mod/chrono-dawn"
+    },
+    "Miner's Market": {
+      "downloads": 1048,
+      "url": "https://modrinth.com/mod/miners-market"
+    },
+    "Just Block Shapes": {
+      "downloads": 3542,
+      "url": "https://modrinth.com/mod/just-block-shapes"
+    },
+    "FancyIceCream": {
+      "downloads": 2775,
+      "url": "https://modrinth.com/mod/fancyicecream"
+    },
+    "Farmer's Miracle": {
+      "downloads": 1659,
+      "url": "https://modrinth.com/mod/farmers-miracle"
     }
   }
 }
