@@ -1,98 +1,98 @@
 {
   "curseforge": {
     "Just Brightness": {
-      "downloads": 1872,
+      "downloads": 1914,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-brightness"
     },
     "Color Challenge": {
-      "downloads": 598,
+      "downloads": 599,
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 1536,
+      "downloads": 1540,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Weathered Wells": {
-      "downloads": 3310,
+      "downloads": 3318,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     },
     "Farmer's Miracle": {
-      "downloads": 2421,
+      "downloads": 2429,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
-      "downloads": 1366,
+      "downloads": 1367,
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Fancy Ice Cream": {
-      "downloads": 27438,
+      "downloads": 27478,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Just Block Shapes": {
-      "downloads": 7309,
+      "downloads": 7338,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Castle Shift": {
-      "downloads": 59710,
+      "downloads": 60102,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Just Coordinates": {
-      "downloads": 84261,
+      "downloads": 84624,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Beginner's Delight": {
-      "downloads": 221497,
+      "downloads": 221741,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Chrono Dawn": {
-      "downloads": 335745,
+      "downloads": 339652,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     }
   },
   "modrinth": {
-    "Beginner's Delight": {
-      "downloads": 18449,
-      "url": "https://modrinth.com/mod/beginners-delight"
-    },
-    "Color Challenge": {
-      "downloads": 659,
-      "url": "https://modrinth.com/mod/color-challenge"
-    },
-    "Just Coordinates": {
-      "downloads": 55829,
-      "url": "https://modrinth.com/mod/just-coordinates"
-    },
-    "FancyIceCream": {
-      "downloads": 2831,
-      "url": "https://modrinth.com/mod/fancyicecream"
+    "Farmer's Miracle": {
+      "downloads": 1685,
+      "url": "https://modrinth.com/mod/farmers-miracle"
     },
     "Hunter's Market": {
-      "downloads": 858,
+      "downloads": 862,
       "url": "https://modrinth.com/mod/hunters-market"
     },
+    "FancyIceCream": {
+      "downloads": 2851,
+      "url": "https://modrinth.com/mod/fancyicecream"
+    },
     "Castle Shift": {
-      "downloads": 10995,
+      "downloads": 11109,
       "url": "https://modrinth.com/mod/castle-shift"
     },
-    "Chrono Dawn": {
-      "downloads": 16342,
-      "url": "https://modrinth.com/mod/chrono-dawn"
+    "Color Challenge": {
+      "downloads": 661,
+      "url": "https://modrinth.com/mod/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 1084,
+      "downloads": 1088,
       "url": "https://modrinth.com/mod/miners-market"
     },
+    "Beginner's Delight": {
+      "downloads": 19127,
+      "url": "https://modrinth.com/mod/beginners-delight"
+    },
+    "Just Coordinates": {
+      "downloads": 56525,
+      "url": "https://modrinth.com/mod/just-coordinates"
+    },
+    "Chrono Dawn": {
+      "downloads": 16604,
+      "url": "https://modrinth.com/mod/chrono-dawn"
+    },
     "Weathered Wells": {
-      "downloads": 1494,
+      "downloads": 1500,
       "url": "https://modrinth.com/mod/weathered-wells"
     },
     "Just Block Shapes": {
-      "downloads": 3628,
+      "downloads": 3650,
       "url": "https://modrinth.com/mod/just-block-shapes"
-    },
-    "Farmer's Miracle": {
-      "downloads": 1679,
-      "url": "https://modrinth.com/mod/farmers-miracle"
     }
   }
 }
