@@ -1,7 +1,7 @@
 {
   "curseforge": {
     "Just Brightness": {
-      "downloads": 2662,
+      "downloads": 2721,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-brightness"
     },
     "Color Challenge": {
@@ -9,15 +9,15 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 1565,
+      "downloads": 1566,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Weathered Wells": {
-      "downloads": 3380,
+      "downloads": 3385,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     },
     "Farmer's Miracle": {
-      "downloads": 2475,
+      "downloads": 2486,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
@@ -25,74 +25,74 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Fancy Ice Cream": {
-      "downloads": 27762,
+      "downloads": 27790,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Just Block Shapes": {
-      "downloads": 7487,
+      "downloads": 7519,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Castle Shift": {
-      "downloads": 63694,
+      "downloads": 63992,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Just Coordinates": {
-      "downloads": 87739,
+      "downloads": 88027,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Beginner's Delight": {
-      "downloads": 224097,
+      "downloads": 224275,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Chrono Dawn": {
-      "downloads": 374778,
+      "downloads": 377818,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     }
   },
   "modrinth": {
-    "Miner's Market": {
-      "downloads": 1200,
-      "url": "https://modrinth.com/mod/miners-market"
-    },
-    "Farmer's Miracle": {
-      "downloads": 1808,
-      "url": "https://modrinth.com/mod/farmers-miracle"
-    },
-    "Hunter's Market": {
-      "downloads": 938,
-      "url": "https://modrinth.com/mod/hunters-market"
-    },
-    "Beginner's Delight": {
-      "downloads": 25464,
-      "url": "https://modrinth.com/mod/beginners-delight"
-    },
-    "Just Block Shapes": {
-      "downloads": 3880,
-      "url": "https://modrinth.com/mod/just-block-shapes"
-    },
     "Just Coordinates": {
-      "downloads": 63472,
+      "downloads": 63856,
       "url": "https://modrinth.com/mod/just-coordinates"
     },
     "Weathered Wells": {
-      "downloads": 1654,
+      "downloads": 1657,
       "url": "https://modrinth.com/mod/weathered-wells"
     },
-    "FancyIceCream": {
-      "downloads": 3402,
-      "url": "https://modrinth.com/mod/fancyicecream"
+    "Castle Shift": {
+      "downloads": 13258,
+      "url": "https://modrinth.com/mod/castle-shift"
+    },
+    "Just Block Shapes": {
+      "downloads": 3887,
+      "url": "https://modrinth.com/mod/just-block-shapes"
+    },
+    "Farmer's Miracle": {
+      "downloads": 1811,
+      "url": "https://modrinth.com/mod/farmers-miracle"
     },
     "Chrono Dawn": {
-      "downloads": 19146,
+      "downloads": 19263,
       "url": "https://modrinth.com/mod/chrono-dawn"
     },
-    "Castle Shift": {
-      "downloads": 13202,
-      "url": "https://modrinth.com/mod/castle-shift"
+    "FancyIceCream": {
+      "downloads": 3415,
+      "url": "https://modrinth.com/mod/fancyicecream"
+    },
+    "Hunter's Market": {
+      "downloads": 939,
+      "url": "https://modrinth.com/mod/hunters-market"
+    },
+    "Beginner's Delight": {
+      "downloads": 25723,
+      "url": "https://modrinth.com/mod/beginners-delight"
     },
     "Color Challenge": {
       "downloads": 741,
       "url": "https://modrinth.com/mod/color-challenge"
+    },
+    "Miner's Market": {
+      "downloads": 1200,
+      "url": "https://modrinth.com/mod/miners-market"
     }
   }
 }
