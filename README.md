@@ -1,42 +1,40 @@
 # mc-mod-watcher
 
-Minecraft Java版の新バージョン対応状況と、自作ModのCurseForge/Modrinthダウンロード数を監視し、変化があればDiscordに通知します。
+Watches Minecraft Java Edition version support and the CurseForge/Modrinth download counts of my own mods, and notifies Discord when something changes.
 
-## バージョン監視
+## Version watcher
 
-Minecraft Java版の新バージョン(release/snapshot)と、Fabric/Forge/NeoForgeの対応状況を1時間おきに監視し、変化があればDiscordに通知します。
+Checks hourly for new Minecraft Java Edition versions (release/snapshot) and for Fabric/Forge/NeoForge support, and notifies Discord on any change.
 
-## 監視対象
+### What is watched
 
-- Minecraft本体の最新release/snapshot ([Mojangのバージョンマニフェスト](https://piston-meta.mojang.com/mc/game/version_manifest_v2.json))
-- Fabricの対応状況(intermediaryマッピングの公開有無)
-- Forgeの対応状況(maven-metadata.xml)
-- NeoForgeの対応状況(maven-metadata.xml)
+- Latest Minecraft release/snapshot ([Mojang version manifest](https://piston-meta.mojang.com/mc/game/version_manifest_v2.json))
+- Fabric support (whether intermediary mappings are published)
+- Forge support (maven-metadata.xml)
+- NeoForge support (maven-metadata.xml)
 
-## 仕組み
+### How it works
 
-`scripts/check-versions.sh` が各種メタデータを取得し、`state.json` に保存された前回の値と比較します。変化があった項目のみ、`DISCORD_WEBHOOK_URL` (GitHub Secrets) 宛てにDiscord Webhookで通知します。
+`scripts/check-versions.sh` fetches the metadata and compares it with the previous values stored in `state.json`. Only items that changed are sent via Discord webhook to `DISCORD_WEBHOOK_URL` (GitHub Secrets).
 
-`state.json` が存在しない初回実行時は、通知を送らずに現在の状態をそのまま記録します(空リポジトリからの実行でスパム通知にならないようにするため)。
+On the first run, when `state.json` does not exist, the current state is recorded without sending any notification (to avoid a flood of notifications from an empty repository).
 
-GitHub Actions (`.github/workflows/check-versions.yml`) が1時間おきに実行し、`state.json` の変化を自動でコミットします。手動実行は Actions タブから `workflow_dispatch` で行えます。
+GitHub Actions (`.github/workflows/check-versions.yml`) runs hourly and commits changes to `state.json` automatically. You can also run it manually from the Actions tab via `workflow_dispatch`.
 
-## Mod ダウンロード数の監視
+## Mod download watcher
 
-`scripts/check-mod-downloads.sh` が CurseForge (`downloadCount`) と Modrinth (`downloads`) の各Modの
-ダウンロード数を取得し、`mod-downloads-state.json` に保存された前回値と比較します。増加したModが
-あれば、その差分を `DISCORD_WEBHOOK_URL` 宛てに通知します(減少は無視)。前回の状態に無いModが
-見つかった場合は新規検知として通知します。
+`scripts/check-mod-downloads.sh` fetches the download count of each mod from CurseForge (`downloadCount`) and Modrinth (`downloads`) and compares it with the previous values stored in `mod-downloads-state.json`. If any mod's count increased, the difference is sent to `DISCORD_WEBHOOK_URL` (decreases are ignored). A mod that is not in the previous state is reported as newly detected.
 
-監視対象のModは、Modrinthはユーザー名(`MODRINTH_USER`)、CurseForgeは作者ID(`CURSEFORGE_AUTHOR_ID`)
-から自動で取得するため、Modを追加してもスクリプトの更新は不要です。ユーザー/作者の一覧に出ないModだけ
-`MODRINTH_EXTRA_IDS` / `CURSEFORGE_MOD_IDS` に追加してください。
+Mods are discovered automatically from the Modrinth username (`MODRINTH_USER`) and the CurseForge author ID (`CURSEFORGE_AUTHOR_ID`), so the script does not need updating when a mod is added. Only mods that do not appear in the user/author listing need to be added to `MODRINTH_EXTRA_IDS` / `CURSEFORGE_MOD_IDS`.
 
-`state.json` と同様、初回実行時は通知せず現在の状態を記録するだけです。GitHub Actions
-(`.github/workflows/check-mod-downloads.yml`) が1日1回実行します。
+As with `state.json`, the first run only records the current state without notifying. GitHub Actions (`.github/workflows/check-mod-downloads.yml`) runs it once a day.
 
 ## Secrets
 
-- `DISCORD_WEBHOOK_URL_VERSIONS`: バージョン監視の通知先Discord Webhook URL
-- `DISCORD_WEBHOOK_URL_DOWNLOADS`: Modダウンロード数監視の通知先Discord Webhook URL
-- `CURSEFORGE_API_KEY`: CurseForge Core API キー([console.curseforge.com](https://console.curseforge.com/)で無料発行)。未設定の場合はCurseForge側の監視のみスキップされる
+- `DISCORD_WEBHOOK_URL_VERSIONS`: Discord webhook URL for version watcher notifications
+- `DISCORD_WEBHOOK_URL_DOWNLOADS`: Discord webhook URL for download watcher notifications
+- `CURSEFORGE_API_KEY`: CurseForge Core API key (free from [console.curseforge.com](https://console.curseforge.com/)). If unset, only the CurseForge side of the download watcher is skipped
+
+## License
+
+[MIT](LICENSE)

@@ -11,8 +11,8 @@ NEOFORGE_METADATA_URL="https://maven.neoforged.net/releases/net/neoforged/neofor
 
 log() { echo "[check-versions] $*" >&2; }
 
-# --retry-all-errors: 上流CDNが一時的に404/5xxを返すことがあるため、
-# HTTPエラーもリトライ対象に含める。
+# --retry-all-errors: upstream CDNs sometimes return transient 404/5xx,
+# so retry on HTTP errors as well.
 CURL_RETRY_OPTS=(--retry 3 --retry-delay 2 --retry-all-errors)
 
 fetch_mc_versions() {
@@ -31,10 +31,10 @@ fetch_neoforge_metadata() {
   curl -fsSL "${CURL_RETRY_OPTS[@]}" "$NEOFORGE_METADATA_URL"
 }
 
-# maven-metadata.xml の <version> 一覧は公開順(昇順)なので、
-# 指定prefixに一致する最後の要素が該当MCバージョン向けの最新ビルド。
-# 該当バージョンがまだ存在しない(grepが0件)のは正常系なので、
-# pipefail によってスクリプト全体が落ちないよう `|| true` で吸収する。
+# The <version> list in maven-metadata.xml is in publication order (ascending),
+# so the last entry matching the prefix is the latest build for that MC version.
+# No match yet (grep finds nothing) is a normal case, so absorb it with
+# `|| true` to keep pipefail from aborting the whole script.
 latest_version_for_prefix() {
   local xml="$1" prefix="$2"
   echo "$xml" | { grep -oE "<version>${prefix}[^<]*</version>" || true; } | tail -1 | sed -E 's#</?version>##g'
@@ -103,22 +103,22 @@ main() {
     old_neoforge_version="$(echo "$old_state" | jq -r '.neoforge_latest_version // empty')"
 
     if [[ "$mc_release" != "$old_mc_release" ]]; then
-      messages+=("🟢 Minecraft **${mc_release}** (release) がリリースされました")
+      messages+=("🟢 Minecraft **${mc_release}** (release) has been released")
     fi
     if [[ "$mc_snapshot" != "$old_mc_snapshot" ]]; then
-      messages+=("🟡 Minecraft **${mc_snapshot}** (snapshot) が公開されました")
+      messages+=("🟡 Minecraft **${mc_snapshot}** (snapshot) is now available")
     fi
     if [[ "$fabric_has_release" == "true" && "$old_fabric_release" != "true" ]]; then
-      messages+=("🟣 Fabric が **${mc_release}** に対応しました")
+      messages+=("🟣 Fabric now supports **${mc_release}**")
     fi
     if [[ "$fabric_has_snapshot" == "true" && "$old_fabric_snapshot" != "true" ]]; then
-      messages+=("🟣 Fabric が **${mc_snapshot}** (snapshot) に対応しました")
+      messages+=("🟣 Fabric now supports **${mc_snapshot}** (snapshot)")
     fi
     if [[ -n "$forge_latest_version" && "$forge_latest_version" != "$old_forge_version" ]]; then
-      messages+=("🔶 Forge **${mc_release}** 用ビルド ${forge_latest_version} が公開されました")
+      messages+=("🔶 Forge build ${forge_latest_version} for **${mc_release}** is now available")
     fi
     if [[ -n "$neoforge_latest_version" && "$neoforge_latest_version" != "$old_neoforge_version" ]]; then
-      messages+=("🔷 NeoForge **${mc_release}** 用ビルド ${neoforge_latest_version} が公開されました")
+      messages+=("🔷 NeoForge build ${neoforge_latest_version} for **${mc_release}** is now available")
     fi
   else
     log "No existing state file found. Seeding initial state without notification."

@@ -9,21 +9,22 @@ MODRINTH_API="https://api.modrinth.com/v2"
 CURSEFORGE_API="https://api.curseforge.com/v1"
 
 MODRINTH_USER="ksoichiro"
-# ユーザーのプロジェクト一覧に出ない(組織所有扱いの)プロジェクト。
+# Projects that do not appear in the user's project list (treated as organization-owned).
 MODRINTH_EXTRA_IDS=("yggUWseW")
-# CurseForgeは作者IDで検索して自分のModを自動で拾う。Mod追加時の更新漏れを防ぐため。
+# On CurseForge, search by author ID to pick up my mods automatically,
+# so newly added mods are not missed.
 CURSEFORGE_AUTHOR_ID="103748140"
-# 作者検索に出ない場合の保険として、既知のModは個別にも取得する。
+# As a fallback for mods missing from the author search, also fetch known mods individually.
 CURSEFORGE_MOD_IDS=(1414198 1449883 1485856 1459678 1457302 1474573 1462226 677895 1452132 1459633 1456423 1702768)
 
 log() { echo "[check-mod-downloads] $*" >&2; }
 
-# --retry-all-errors: 上流APIが一時的に404/5xxを返すことがあるため、
-# HTTPエラーもリトライ対象に含める。
+# --retry-all-errors: upstream APIs sometimes return transient 404/5xx,
+# so retry on HTTP errors as well.
 CURL_RETRY_OPTS=(--retry 3 --retry-delay 2 --retry-all-errors)
 
-# Discordの1メッセージあたりの上限(2000文字)を超えないよう、
-# 通知行を複数チャンクに分けて送信する。1900文字を安全マージンとする。
+# Split notification lines into multiple chunks so each stays under Discord's
+# per-message limit (2000 characters). 1900 leaves a safety margin.
 DISCORD_CONTENT_LIMIT=1900
 
 send_discord_notification() {
@@ -56,8 +57,8 @@ post_discord_chunk() {
   shift
   local content payload
   content="$(printf '%s\n' "$@")"
-  # flags: 4 = SUPPRESS_EMBEDS。リンクだらけのメッセージでプレビュー画像が
-  # ずらずら展開されるのを防ぐ。
+  # flags: 4 = SUPPRESS_EMBEDS. Keeps link-heavy messages from expanding
+  # into a long run of preview embeds.
   payload="$(jq -n --arg content "$content" '{content: $content, flags: 4}')"
   curl -fsSL "${CURL_RETRY_OPTS[@]}" -X POST -H "Content-Type: application/json" -d "$payload" "$webhook_url" > /dev/null
 }
@@ -78,9 +79,10 @@ fetch_modrinth_downloads() {
   echo "$projects" | jq 'map({(.title): {downloads: .downloads, url: ("https://modrinth.com/" + .project_type + "/" + .slug)}}) | add // {}'
 }
 
-# CurseForgeのModオブジェクトはスクリーンショットやファイル一覧を含み巨大で、
-# 検索結果をそのまま --argjson に渡すと引数長上限(Linuxで1引数128KB)を超える。
-# レスポンスはstdinでjqに渡し、必要なフィールドだけに絞ってから保持する。
+# CurseForge mod objects are huge (screenshots, file lists), and passing search
+# results directly via --argjson exceeds the argument length limit (128KB per
+# argument on Linux). Pipe the response to jq via stdin and keep only the
+# fields we need.
 CURSEFORGE_SLIM_MOD='{id, name, downloads: .downloadCount, url: .links.websiteUrl}'
 
 fetch_curseforge_downloads() {
@@ -108,10 +110,13 @@ fetch_curseforge_downloads() {
   echo "$mods" | jq 'map({(.name): {downloads, url}}) | add // {}'
 }
 
-# 前回値より増えたModだけ通知行を作る。減少(取り下げ等)は無視する。
-# 前回stateに無いModは新規検知として通知する。ただし前回そのソース自体が空
-# (初回やAPIキー未設定でスキップした回)の場合は全Modが新規扱いになるので通知しない。
-# $old の値は旧スキーマ(数値)/新スキーマ(downloads/urlを持つオブジェクト)のどちらもあり得る。
+# Build notification lines only for mods whose count increased. Decreases
+# (e.g. a withdrawn file) are ignored.
+# Mods missing from the previous state are reported as newly detected. If the
+# previous state for that source was empty (first run, or a run that skipped it
+# for lack of an API key), every mod would look new, so nothing is reported.
+# Values in $old may use the old schema (a number) or the new one (an object
+# with downloads/url).
 diff_downloads() {
   local source_label="$1" old_json="$2" new_json="$3"
   jq -n --argjson old "$old_json" --argjson new "$new_json" --arg label "$source_label" -r '
@@ -120,10 +125,10 @@ diff_downloads() {
     (if ($old_raw | type) == "object" then $old_raw.downloads else $old_raw end) as $old_count |
     if $old_count == null then
       select($old | length > 0) |
-      "🆕 \($label) [\(.key)](\(.value.url)): 新規検知 (累計 \(.value.downloads) DL)"
+      "🆕 \($label) [\(.key)](\(.value.url)): newly detected (\(.value.downloads) downloads total)"
     else
       select(.value.downloads > $old_count) |
-      "📈 \($label) [\(.key)](\(.value.url)): +\(.value.downloads - $old_count) DL (累計 \(.value.downloads))"
+      "📈 \($label) [\(.key)](\(.value.url)): +\(.value.downloads - $old_count) downloads (\(.value.downloads) total)"
     end
   '
 }
