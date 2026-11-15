@@ -1,23 +1,23 @@
 {
   "curseforge": {
     "Just Brightness": {
-      "downloads": 3672,
+      "downloads": 3772,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-brightness"
     },
     "Color Challenge": {
-      "downloads": 605,
+      "downloads": 606,
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 1810,
+      "downloads": 1814,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Weathered Wells": {
-      "downloads": 3446,
+      "downloads": 3454,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     },
     "Farmer's Miracle": {
-      "downloads": 2579,
+      "downloads": 2583,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
@@ -25,74 +25,74 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Fancy Ice Cream": {
-      "downloads": 28553,
+      "downloads": 28620,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Just Block Shapes": {
-      "downloads": 7721,
+      "downloads": 7730,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Castle Shift": {
-      "downloads": 67448,
+      "downloads": 67697,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Just Coordinates": {
-      "downloads": 92344,
+      "downloads": 92648,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Beginner's Delight": {
-      "downloads": 227742,
+      "downloads": 228257,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Chrono Dawn": {
-      "downloads": 423361,
+      "downloads": 426715,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     }
   },
   "modrinth": {
-    "Just Block Shapes": {
-      "downloads": 3703,
-      "url": "https://modrinth.com/mod/just-block-shapes"
-    },
-    "Castle Shift": {
-      "downloads": 12119,
-      "url": "https://modrinth.com/mod/castle-shift"
-    },
-    "Beginner's Delight": {
-      "downloads": 24592,
-      "url": "https://modrinth.com/mod/beginners-delight"
-    },
-    "Just Coordinates": {
-      "downloads": 59257,
-      "url": "https://modrinth.com/mod/just-coordinates"
-    },
-    "Weathered Wells": {
-      "downloads": 1564,
-      "url": "https://modrinth.com/mod/weathered-wells"
-    },
-    "FancyIceCream": {
-      "downloads": 3049,
-      "url": "https://modrinth.com/mod/fancyicecream"
-    },
     "Hunter's Market": {
-      "downloads": 886,
+      "downloads": 887,
       "url": "https://modrinth.com/mod/hunters-market"
     },
-    "Chrono Dawn": {
-      "downloads": 17151,
-      "url": "https://modrinth.com/mod/chrono-dawn"
+    "Farmer's Miracle": {
+      "downloads": 1757,
+      "url": "https://modrinth.com/mod/farmers-miracle"
     },
     "Miner's Market": {
-      "downloads": 1208,
+      "downloads": 1219,
       "url": "https://modrinth.com/mod/miners-market"
+    },
+    "Castle Shift": {
+      "downloads": 12207,
+      "url": "https://modrinth.com/mod/castle-shift"
+    },
+    "FancyIceCream": {
+      "downloads": 3055,
+      "url": "https://modrinth.com/mod/fancyicecream"
     },
     "Color Challenge": {
       "downloads": 636,
       "url": "https://modrinth.com/mod/color-challenge"
     },
-    "Farmer's Miracle": {
-      "downloads": 1755,
-      "url": "https://modrinth.com/mod/farmers-miracle"
+    "Weathered Wells": {
+      "downloads": 1570,
+      "url": "https://modrinth.com/mod/weathered-wells"
+    },
+    "Chrono Dawn": {
+      "downloads": 17271,
+      "url": "https://modrinth.com/mod/chrono-dawn"
+    },
+    "Just Coordinates": {
+      "downloads": 59691,
+      "url": "https://modrinth.com/mod/just-coordinates"
+    },
+    "Beginner's Delight": {
+      "downloads": 24899,
+      "url": "https://modrinth.com/mod/beginners-delight"
+    },
+    "Just Block Shapes": {
+      "downloads": 3706,
+      "url": "https://modrinth.com/mod/just-block-shapes"
     }
   }
 }
