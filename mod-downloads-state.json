@@ -1,7 +1,7 @@
 {
   "curseforge": {
     "Just Brightness": {
-      "downloads": 4192,
+      "downloads": 4218,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-brightness"
     },
     "Color Challenge": {
@@ -9,90 +9,90 @@
       "url": "https://www.curseforge.com/minecraft/mc-mods/color-challenge"
     },
     "Miner's Market": {
-      "downloads": 1834,
+      "downloads": 1835,
       "url": "https://www.curseforge.com/minecraft/mc-mods/miners-market"
     },
     "Weathered Wells": {
-      "downloads": 3483,
+      "downloads": 3484,
       "url": "https://www.curseforge.com/minecraft/mc-mods/weathered-wells"
     },
     "Farmer's Miracle": {
-      "downloads": 2612,
+      "downloads": 2615,
       "url": "https://www.curseforge.com/minecraft/mc-mods/farmers-miracle"
     },
     "Hunter's Market": {
-      "downloads": 1468,
+      "downloads": 1470,
       "url": "https://www.curseforge.com/minecraft/mc-mods/hunters-market"
     },
     "Fancy Ice Cream": {
-      "downloads": 28850,
+      "downloads": 28878,
       "url": "https://www.curseforge.com/minecraft/mc-mods/fancy-ice-cream"
     },
     "Just Block Shapes": {
-      "downloads": 7815,
+      "downloads": 7830,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-block-shapes"
     },
     "Castle Shift": {
-      "downloads": 69187,
+      "downloads": 69377,
       "url": "https://www.curseforge.com/minecraft/mc-mods/castle-shift"
     },
     "Just Coordinates": {
-      "downloads": 94455,
+      "downloads": 94655,
       "url": "https://www.curseforge.com/minecraft/mc-mods/just-coordinates"
     },
     "Beginner's Delight": {
-      "downloads": 234922,
+      "downloads": 235182,
       "url": "https://www.curseforge.com/minecraft/mc-mods/beginners-delight"
     },
     "Chrono Dawn": {
-      "downloads": 448490,
+      "downloads": 450707,
       "url": "https://www.curseforge.com/minecraft/mc-mods/chrono-dawn"
     }
   },
   "modrinth": {
-    "Miner's Market": {
-      "downloads": 1307,
-      "url": "https://modrinth.com/mod/miners-market"
-    },
-    "FancyIceCream": {
-      "downloads": 3160,
-      "url": "https://modrinth.com/mod/fancyicecream"
-    },
-    "Color Challenge": {
-      "downloads": 645,
-      "url": "https://modrinth.com/mod/color-challenge"
+    "Weathered Wells": {
+      "downloads": 1579,
+      "url": "https://modrinth.com/mod/weathered-wells"
     },
     "Just Coordinates": {
-      "downloads": 62101,
+      "downloads": 62365,
       "url": "https://modrinth.com/mod/just-coordinates"
+    },
+    "Chrono Dawn": {
+      "downloads": 18412,
+      "url": "https://modrinth.com/mod/chrono-dawn"
     },
     "Farmer's Miracle": {
       "downloads": 1775,
       "url": "https://modrinth.com/mod/farmers-miracle"
     },
-    "Castle Shift": {
-      "downloads": 12707,
-      "url": "https://modrinth.com/mod/castle-shift"
-    },
-    "Weathered Wells": {
-      "downloads": 1577,
-      "url": "https://modrinth.com/mod/weathered-wells"
-    },
-    "Chrono Dawn": {
-      "downloads": 18315,
-      "url": "https://modrinth.com/mod/chrono-dawn"
-    },
-    "Beginner's Delight": {
-      "downloads": 26595,
-      "url": "https://modrinth.com/mod/beginners-delight"
+    "Color Challenge": {
+      "downloads": 645,
+      "url": "https://modrinth.com/mod/color-challenge"
     },
     "Just Block Shapes": {
-      "downloads": 3764,
+      "downloads": 3778,
       "url": "https://modrinth.com/mod/just-block-shapes"
     },
     "Hunter's Market": {
       "downloads": 900,
       "url": "https://modrinth.com/mod/hunters-market"
+    },
+    "FancyIceCream": {
+      "downloads": 3175,
+      "url": "https://modrinth.com/mod/fancyicecream"
+    },
+    "Beginner's Delight": {
+      "downloads": 26747,
+      "url": "https://modrinth.com/mod/beginners-delight"
+    },
+    "Castle Shift": {
+      "downloads": 12760,
+      "url": "https://modrinth.com/mod/castle-shift"
+    },
+    "Miner's Market": {
+      "downloads": 1308,
+      "url": "https://modrinth.com/mod/miners-market"
     }
   }
 }
